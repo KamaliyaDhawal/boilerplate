@@ -1,0 +1,86 @@
+*{
+  margin:0;
+  padding:0;
+}
+body{
+    background-image: url(../img/desktop_bg.png) ;
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+}
+.text-white{
+    color: white;
+}
+.nopadding{
+    padding: 0;
+}
+.bold{
+    font-weight: bold;
+}
+.font-1p5em{
+    font-size: 1.5em;
+}
+.margin-top-10{
+    margin-top: 10px;
+}
+.margin-top-20{
+    margin-top: 20px;
+}
+.same-padding{
+    padding: 0.01em 16px;
+}
+a:hover{
+    text-decoration: none;
+}
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+.inner{
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 364px;
+    min-width: 320px;
+    max-width: 412px;
+    width: calc(100% - 40px);
+    padding: 36px;
+    margin-bottom: 28px;
+}
+.custom-input{
+    color: white; 
+    background: none; 
+    text-align: right;
+}
+
+.custom-input:focus{
+    border-color: #749809;
+    outline: transparent solid 1px !important;
+}
+
+.btn-grad {
+    background-image: linear-gradient(to right, #bfe353 0%, #749809 100%);
+    border-radius: 40px;
+    height: 45px;
+}
+.btn-grad:hover { 
+    background-position: left center; 
+}
+
+@media only screen and (max-width: 500px) {
+    body{
+        background-image: url(../img/mobile_bg.png) ;
+        background-position: center center;
+        background-repeat:  no-repeat;
+        background-attachment: fixed;
+        background-size:  100% 100%;
+        background-color: #999;
+    }
+}

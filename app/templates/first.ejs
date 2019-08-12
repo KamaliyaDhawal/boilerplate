@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Success</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style type="text/css"> 
+  	
+  	*{
+  margin:0;
+  padding:0;
+}
+body{
+    background-color: green;
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+}
+.text-white{
+    color: white;
+}
+.nopadding{
+    padding: 0;
+}
+.bold{
+    font-weight: bold;
+}
+.font-1p5em{
+    font-size: 1.5em;
+}
+.margin-top-10{
+    margin-top: 10px;
+}
+.margin-top-20{
+    margin-top: 20px;
+}
+.same-padding{
+    padding: 0.01em 16px;
+}
+a:hover{
+    text-decoration: none;
+}
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+.inner{
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 364px;
+    min-width: 320px;
+    max-width: 412px;
+    width: calc(100% - 40px);
+    padding: 36px;
+    margin-bottom: 28px;
+}
+.custom-input{
+    color: white; 
+    background: none; 
+    text-align: right;
+}
+
+.custom-input:focus{
+    border-color: #749809;
+    outline: transparent solid 1px !important;
+}
+
+.btn-grad {
+    background-color:blueviolet;
+    border-radius: 40px;
+    height: 45px;
+}
+.btn-grad:hover { 
+    background-position: left center; 
+}
+
+/* @media only screen and (max-width: 500px) {
+    body{
+        background-image: url(http://ag-struct.client.scteches.com/img/mobile_bg.png) ;
+        background-position: center center;
+        background-repeat:  no-repeat;
+        background-attachment: fixed;
+        background-size:  100% 100%;
+        background-color: #999;
+    }
+} */
+
+  </style>
+</head>
+<body>
+
+<div>
+  <div class="outer">
+    <div class="middle">
+      <div class="inner text-center">
+          <!-- <img src="http://ag-struct.client.scteches.com/img/logo.png" class="text-center"> -->
+        <p class="text-center bold font-1p5em text-white">בחר/י סיסמה חדשה</p>
+        <form class="w3-container nopadding" id="myForm" name="myForm">
+          <p class="margin-top-20">
+          <input class="w3-input custom-input" type="password" id="password" placeholder= "סיסמה חדשה"></p>
+          <p class="margin-top-20">
+          <input class="w3-input custom-input" type="password" id="confpass" placeholder= "אימות סיסמה"></p>
+          <span style="color:white;"></span>
+        </form>
+        <p class="margin-top-20 nopadding">
+          <button href="#" type="button" onclick="myFunction()" class="btn btn-block btn-grad text-white">אישור</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script type="text/javascript">
+	var currentLocation = window.location + '';
+    var res = currentLocation.split("/");
+    var newurl ='<%- client_url %>';
+	function myFunction () {
+		$(document).ready(function() {
+		   var pass = $('#password').val();
+		   var conpass = $('#confpass').val();
+		   if ( $( "#password" ).val() != $( "#confpass" ).val() ) {
+			    $( "span" ).text( "סיסמה ואישור הסיסמה אינה תואמת" ).show().fadeOut( 5000 );
+  				event.preventDefault();
+		  }else {
+	  		var settings = {
+			  "async": true,
+			  "crossDomain": true,
+			  "url": newurl + "api/users/resetpasswordsubmit",
+			  "method": "POST",
+			  "headers": {
+			    "Content-Type": "application/json",
+			    "Cache-Control": "no-cache",
+			    "Postman-Token": "8fc50238-a424-ce6c-f4c3-f0e937da5023"
+			  },
+			  "processData": false,
+			  "data": "{\n\t\"user_id\" : \"" + res[6] + "\",\n\t\"password\" : \"" + pass + "\"\n}"
+			}
+			$.ajax(settings).done(function (response) {
+			  window.location.href= newurl + "api/users/password_success"; 
+			});
+		  }
+		});
+	}
+</script>
+</html>
